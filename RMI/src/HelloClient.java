@@ -1,20 +1,17 @@
-import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class HelloClient {
-    static String message = "blank";
-// The Hello object "obj" is the identifier that is 
-
     // the Hello interface.
     static Hello obj = null;
 
     public static void main(String args[]) {
-        String host = (args.length < 1) ? null : args[0];
-        try {
-            Registry registry = LocateRegistry.getRegistry(host);
+//        String host = (args.length < 1) ? null : args[0];
 
-            Hello stub = (Hello) registry.lookup("HelloServer");
+        try {
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
+
+            Hello stub = (Hello) registry.lookup("server");
 
             String response = stub.helloString();
             System.out.println("response: " + response);
