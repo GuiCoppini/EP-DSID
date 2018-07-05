@@ -13,8 +13,14 @@ public class HelloClient {
 
             Hello stub = (Hello) registry.lookup("server");
 
-            String response = stub.helloString();
-            System.out.println("response: " + response);
+            Integer intResponse = stub.helloInteger();
+            String strResponse = stub.helloString();
+            Long longResponse = stub.helloLong();
+
+            System.out.println("Integer: " + intResponse);
+            System.out.println("String: " + strResponse);
+            System.out.println("Long: " + longResponse);
+
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
