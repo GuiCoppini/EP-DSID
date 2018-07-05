@@ -9,6 +9,7 @@ public class HelloClient {
         //        String host = (args.length < 1) ? null : args[0];
 
         try {
+            long start = System.currentTimeMillis();
 
             System.out.println("Iniciando conexão com o Servidor");
             String host = "127.0.0.1";
@@ -20,19 +21,20 @@ public class HelloClient {
             Hello stub = (Hello) registry.lookup("server");
             System.out.println("Stub criado!");
 
-
             Integer intResponse = stub.helloInteger(10);
-            String strResponse = stub.helloString("SHAZAM"); // mudar tamanho da string
-            Long longResponse = stub.helloLong(15L);
-            Long eightLongsResponse = stub.hello8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
+//            String strResponse = stub.helloString("SHAZAM"); // mudar tamanho da string
+//            Long longResponse = stub.helloLong(15L);
+//            Long eightLongsResponse = stub.hello8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
+//            stub.voidFunction();
 
-            stub.voidFunction();
+            long totalTime = System.currentTimeMillis() - start;
+            System.out.println("Tempo discorrido: " + totalTime + "ms");
 
 
-            System.out.println("Integer: " + intResponse);
-            System.out.println("String: " + strResponse);
-            System.out.println("Long: " + longResponse);
-            System.out.println("8 Longs: " + eightLongsResponse);
+//            System.out.println("Integer: " + intResponse);
+//            System.out.println("String: " + strResponse);
+//            System.out.println("Long: " + longResponse);
+//            System.out.println("8 Longs: " + eightLongsResponse);
         } catch(Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();

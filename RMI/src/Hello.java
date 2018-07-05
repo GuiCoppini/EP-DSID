@@ -10,5 +10,5 @@ public interface Hello extends Remote {
 
     Long hello8Longs(Long number1, Long number2, Long number3, Long number4, Long number5, Long number6, Long number7, Long number8) throws RemoteException;
 
-    void voidFunction();
+//    void voidFunction();
 }
