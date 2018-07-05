@@ -6,22 +6,24 @@ public class HelloClient {
     static Hello obj = null;
 
     public static void main(String args[]) {
-//        String host = (args.length < 1) ? null : args[0];
+        //        String host = (args.length < 1) ? null : args[0];
 
         try {
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
 
             Hello stub = (Hello) registry.lookup("server");
 
-            Integer intResponse = stub.helloInteger();
-            String strResponse = stub.helloString();
-            Long longResponse = stub.helloLong();
+            Integer intResponse = stub.helloInteger(10);
+            String strResponse = stub.helloString("SHAZAM");
+            Long longResponse = stub.helloLong(15L);
+
+            Long eightLongs = stub.hello8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
 
             System.out.println("Integer: " + intResponse);
             System.out.println("String: " + strResponse);
             System.out.println("Long: " + longResponse);
-
-        } catch (Exception e) {
+            System.out.println("8 Longs: " + longResponse);
+        } catch(Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
         }

@@ -10,20 +10,24 @@ public class HelloServer extends UnicastRemoteObject implements Hello {
     }
 
     @Override
-    public String helloString() throws RemoteException {
-        return "Hello Amigao";
+    public String helloString(String str) throws RemoteException {
+        return "Voce enviou a string ["+str+"]";
     }
 
     @Override
-    public Integer helloInteger() throws RemoteException {
-        return 10 * 10;
+    public Integer helloInteger(Integer number) throws RemoteException {
+        return 10 * number;
     }
 
     @Override
-    public Long helloLong() throws RemoteException {
-        return 10L * 10L;
+    public Long helloLong(Long number) throws RemoteException {
+        return 10L * number;
     }
 
+    @Override
+    public Long hello8Longs(Long number1, Long number2, Long number3, Long number4, Long number5, Long number6, Long number7, Long number8) throws RemoteException {
+        return number1+number2+number3+number4+number5+number6+number7+number8;
+    }
 
     public static void main(String[] args) {
         try {
