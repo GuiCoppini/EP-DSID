@@ -29,6 +29,13 @@ public class HelloServer extends UnicastRemoteObject implements Hello {
         return number1+number2+number3+number4+number5+number6+number7+number8;
     }
 
+    @Override
+    public void voidFunction() {
+        int a = 10;
+        int b = 30;
+        int c = a + b;
+    }
+
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.createRegistry(1099);

@@ -14,15 +14,17 @@ public class HelloClient {
             Hello stub = (Hello) registry.lookup("server");
 
             Integer intResponse = stub.helloInteger(10);
-            String strResponse = stub.helloString("SHAZAM");
+            String strResponse = stub.helloString("SHAZAM"); // mudar tamanho da string
             Long longResponse = stub.helloLong(15L);
+            Long eightLongsResponse = stub.hello8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
 
-            Long eightLongs = stub.hello8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
+            stub.voidFunction();
+
 
             System.out.println("Integer: " + intResponse);
             System.out.println("String: " + strResponse);
             System.out.println("Long: " + longResponse);
-            System.out.println("8 Longs: " + longResponse);
+            System.out.println("8 Longs: " + eightLongsResponse);
         } catch(Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
