@@ -9,9 +9,17 @@ public class HelloClient {
         //        String host = (args.length < 1) ? null : args[0];
 
         try {
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
 
+            System.out.println("Iniciando conexão com o Servidor");
+            String host = "127.0.0.1";
+            int port = 1099;
+            Registry registry = LocateRegistry.getRegistry(host, port);
+            System.out.println("Conexão feita ao HOST "+host + ":" + port);
+
+            System.out.println("Criando stub");
             Hello stub = (Hello) registry.lookup("server");
+            System.out.println("Stub criado!");
+
 
             Integer intResponse = stub.helloInteger(10);
             String strResponse = stub.helloString("SHAZAM"); // mudar tamanho da string
