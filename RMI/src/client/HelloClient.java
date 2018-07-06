@@ -17,7 +17,7 @@ public class HelloClient {
             long start = System.currentTimeMillis();
 
             System.out.println("Iniciando conexão com o Servidor");
-            String host = "189.54.60.67";
+            String host = "189.33.183.167";
             int port = 1099;
 
 
@@ -25,7 +25,7 @@ public class HelloClient {
             System.out.println("Conexão feita ao HOST "+host + ":" + port);
 
             System.out.println("Criando stub");
-            Hello stub = (Hello) registry.lookup("calculador");
+            Hello stub = (Hello) registry.lookup("server");
             System.out.println("Stub criado!");
 
             Integer intResponse = stub.helloInteger(10);
