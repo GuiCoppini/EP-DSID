@@ -1,5 +1,6 @@
 package server;
 
+
 import interfaces.Hello;
 
 import java.rmi.RemoteException;
@@ -33,26 +34,37 @@ public class HelloServer extends UnicastRemoteObject implements Hello {
         return number1+number2+number3+number4+number5+number6+number7+number8;
     }
 
-//    @Override
-//    public void voidFunction() {
-//        int a = 10;
-//        int b = 30;
-//        int c = a + b;
-//    }
+    @Override
+    public void voidFunction() {
+        // Apenas uma funcao para fazer coisas basicas e nao retornar nada
+        int a = 10;
+        int b = 30;
+        int c = a + b;
+    }
 
     public static void main(String[] args) {
         try {
-//            System.setProperty("java.rmi.server.hostname","192.168.1.109");
+
+            // Aqui vem o IP da rede do host (PC que está rodando essa classe)
+            // Poderia ser substituído por rodar o server como
+            // java server.helloServer -Djava.rmi.server.hostname=IP_LOCAL
+            System.setProperty("java.rmi.server.hostname","192.168.1.109");
+
+            // "Abre" o registro RMI na porta 1099 que é a default, mas poderíamos escolher outra
             Registry registry = LocateRegistry.createRegistry(1099);
 
-            registry.rebind("server", new  HelloServer());
-
+            // Cria o Servidor que vai receber e cuidar das requests e binda ele no caminho '/server'
+            // assim, quando o client bater no 'server', o HelloServer irá tratar
+            HelloServer serverObject = new HelloServer();
+            registry.rebind("server", serverObject);
 
             System.out.println("Server started!");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
 
 
 }
