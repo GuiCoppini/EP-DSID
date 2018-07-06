@@ -1,3 +1,8 @@
+package client;
+
+import interfaces.Hello;
+
+import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -14,11 +19,13 @@ public class HelloClient {
             System.out.println("Iniciando conexão com o Servidor");
             String host = "189.54.60.67";
             int port = 1099;
+
+
             Registry registry = LocateRegistry.getRegistry(host, port);
             System.out.println("Conexão feita ao HOST "+host + ":" + port);
 
             System.out.println("Criando stub");
-            Hello stub = (Hello) registry.lookup("server");
+            Hello stub = (Hello) registry.lookup("calculador");
             System.out.println("Stub criado!");
 
             Integer intResponse = stub.helloInteger(10);

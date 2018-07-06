@@ -1,4 +1,7 @@
-import java.rmi.Naming;
+package server;
+
+import interfaces.Hello;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -39,32 +42,17 @@ public class HelloServer extends UnicastRemoteObject implements Hello {
 
     public static void main(String[] args) {
         try {
+//            System.setProperty("java.rmi.server.hostname","192.168.1.109");
             Registry registry = LocateRegistry.createRegistry(1099);
-            String bindLocation = "//0.0.0.0:1099/server";
-            Naming.bind(bindLocation, new HelloServer());
-//            registry.rebind("server", new HelloServer());
+
+            registry.rebind("server", new  HelloServer());
+
+
             System.out.println("Server started!");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-//    public static void main2(String args[]) {
-//        Hello obj = new HelloImpl();
-//
-//        try {
-//            Hello stub = (Hello) UnicastRemoteObject.exportObject(obj, 0);
-//
-//            // Bind the remote object's stub in the registry
-//            Registry registry = LocateRegistry.getRegistry();
-//            registry.bind("HelloServer", stub);
-//
-//            System.err.println("Server ready");
-//
-//        } catch (Exception e) {
-//            System.err.println("Server exception: " + e.toString());
-//            e.printStackTrace();
-//            System.exit(0);
-//        }
-//    }
+
 }
