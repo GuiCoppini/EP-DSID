@@ -1,12 +1,14 @@
 package server;
 
 
+import classescomplexas.Pessoa;
 import interfaces.RMIInterface;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 public class RMIServer extends UnicastRemoteObject implements RMIInterface {
 
@@ -42,13 +44,30 @@ public class RMIServer extends UnicastRemoteObject implements RMIInterface {
         int c = a + b;
     }
 
+    @Override
+    public String oiDaPessoa(Pessoa pessoa) throws RemoteException {
+        String oiDaPessoa = pessoa.falaOi();
+        System.out.println("Oi da pessoa: " + oiDaPessoa);
+        return oiDaPessoa;
+    }
+
+    @Override
+    public Double sendDouble(Double number) throws RemoteException {
+        return number * 1.5;
+    }
+
+    @Override
+    public Pessoa sendListaPessoa(List<Pessoa> lista) throws RemoteException {
+        return lista.get(0);
+    }
+
     public static void main(String[] args) {
         try {
 
             // Aqui vem o IP da rede do host (PC que está rodando essa classe)
             // Poderia ser substituído por rodar o server como
             // java server.helloServer -Djava.rmi.server.hostname=IP_LOCAL
-            System.setProperty("java.rmi.server.hostname","192.168.1.109");
+            System.setProperty("java.rmi.server.hostname","localhost");
 
             // "Abre" o registro RMI na porta 1099 que é a default, mas poderíamos escolher outra
             Registry registry = LocateRegistry.createRegistry(1099);

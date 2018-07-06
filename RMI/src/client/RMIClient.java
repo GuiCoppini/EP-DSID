@@ -1,10 +1,13 @@
 package client;
 
 
+import classescomplexas.Pessoa;
 import interfaces.RMIInterface;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RMIClient {
 
@@ -14,7 +17,7 @@ public class RMIClient {
             long start = System.currentTimeMillis();
 
             // Aqui vem o IP do Host do servidor
-            String host = "192.168.1.105";
+            String host = "localhost";
 
             // Porta na qual o host vai deixar o server 'escutando'
             int port = 1099;
@@ -32,12 +35,20 @@ public class RMIClient {
             // O programa foi rodado cerca de 10 vezes para cada um dos testes individualmente
 
 
+
+            List<Pessoa> lista = new ArrayList<>();
+            lista.add(new Pessoa("Guilherme Coppini Pavani", 19, 1.73, 9862951));
+            lista.add(new Pessoa("Silvio Novaes de Lira Junior", 19, 1.74, 9778522));
+            lista.add(new Pessoa("Lucas Bordinhon Capalbo", 19, 1.78, 9877982));
+            Pessoa pessoaDaLista = stub.sendListaPessoa(lista);
+//            String oiDaPessoa = stub.oiDaPessoa(new Pessoa("Guilherme", 19, 1.73));
 //            Integer intResponse = stub.sendInteger(10);
 //            Long longResponse = stub.sendLong(10L);
 //            int stringSize = 2048;
 //            String strResponse = stub.sendString(createString(stringSize)); // mudar tamanho da string
 //            Long eightLongsResponse = stub.send8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
 //            stub.voidFunction();
+//            Double doubleResponse = stub.sendDouble(10.0);
 
 
             // Termina calculo do tempo
