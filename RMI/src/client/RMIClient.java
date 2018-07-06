@@ -1,12 +1,12 @@
 package client;
 
 
-import interfaces.Hello;
+import interfaces.RMIInterface;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class HelloClient {
+public class RMIClient {
 
     public static void main(String args[]) {
         try {
@@ -25,18 +25,18 @@ public class HelloClient {
 
             // Busca pelo server que esta bindado neste caminho 'server' dentro do host
             // e cria o stub
-            Hello stub = (Hello) registry.lookup("server");
+            RMIInterface stub = (RMIInterface) registry.lookup("server");
 
 
             // Todos os métodos usados para testar
             // O programa foi rodado cerca de 10 vezes para cada um dos testes individualmente
 
 
-//            Integer intResponse = stub.helloInteger(10);
-//            Long longResponse = stub.helloLong(10L);
+//            Integer intResponse = stub.sendInteger(10);
+//            Long longResponse = stub.sendLong(10L);
 //            int stringSize = 2048;
-//            String strResponse = stub.helloString(createString(stringSize)); // mudar tamanho da string
-//            Long eightLongsResponse = stub.hello8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
+//            String strResponse = stub.sendString(createString(stringSize)); // mudar tamanho da string
+//            Long eightLongsResponse = stub.send8Longs(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L);
 //            stub.voidFunction();
 
 
