@@ -12,7 +12,7 @@ public class HelloClient {
             long start = System.currentTimeMillis();
 
             System.out.println("Iniciando conexão com o Servidor");
-            String host = "127.0.0.1";
+            String host = "189.54.60.67";
             int port = 1099;
             Registry registry = LocateRegistry.getRegistry(host, port);
             System.out.println("Conexão feita ao HOST "+host + ":" + port);

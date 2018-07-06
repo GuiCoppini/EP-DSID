@@ -1,3 +1,4 @@
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -39,7 +40,9 @@ public class HelloServer extends UnicastRemoteObject implements Hello {
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.createRegistry(1099);
-            registry.rebind("server", new HelloServer());
+            String bindLocation = "//0.0.0.0:1099/server";
+            Naming.bind(bindLocation, new HelloServer());
+//            registry.rebind("server", new HelloServer());
             System.out.println("Server started!");
         } catch (Exception e) {
             e.printStackTrace();
